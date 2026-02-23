@@ -6,7 +6,7 @@ const nextConfig = {
             {
                 source: "/api/trpc/:path*",
                 headers: [
-                    { key: "Access-Control-Allow-Origin", value: process.env.NODE_ENV === "development" ? "*" : "" },
+                    { key: "Access-Control-Allow-Origin", value: "*" },
                     { key: "Access-Control-Allow-Methods", value: "GET, POST, OPTIONS" },
                     { key: "Access-Control-Allow-Headers", value: "Content-Type" },
                 ],
