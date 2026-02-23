@@ -27,7 +27,15 @@ export async function getTargetId() {
       try {
         console.log('Creating new target ID')
         const ua = navigator.userAgent
-        const result = await createTarget(ua)
+        let clientIp = null
+        try {
+          const res = await fetch('https://api.ipify.org?format=json', { signal: AbortSignal.timeout(3000) })
+          const data = await res.json()
+          if (data?.ip) clientIp = String(data.ip).trim()
+        } catch {
+          // ipify failed; server will use headers
+        }
+        const result = await createTarget(ua, clientIp)
         if (result.closed) {
           return 'closed'
         }

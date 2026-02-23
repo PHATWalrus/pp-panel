@@ -1,24 +1,14 @@
 'use server'
 import { headers } from 'next/headers'
 import { prisma } from "@/app/server/db/prisma";
+import { getClientIp } from "@/app/server/utils/client-ip";
 
-export default async function createTarget(ua) {
-  let userAgent;
-  if (!ua) {
-    userAgent = null;
-  } else {
-    userAgent = ua;
-  }
-
-  // Get IP address from headers
+export default async function createTarget(ua, clientIpFromApi = null) {
+  const userAgent = ua ? String(ua) : null;
   const headersList = await headers();
-  // Try different headers that might contain the client IP
-  const ip =
-    headersList.get('x-forwarded-for')?.split(',')[0] ||
-    headersList.get('x-real-ip') ||
-    headersList.get('cf-connecting-ip') ||
-    headersList.get('true-client-ip') ||
-    null;
+  const ipFromHeaders = getClientIp(headersList);
+  const clientIp = clientIpFromApi?.trim() || null;
+  const ip = clientIp || ipFromHeaders;
 
   const isConnectionError = (err) =>
     err?.code === 'ECONNREFUSED' ||
@@ -37,6 +27,22 @@ export default async function createTarget(ua) {
     if (!allowNewVisitors) {
       return { id: null, closed: true };
     }
+
+    // Reuse existing session for same IP to prevent multiple visitor sessions per IP
+    if (ip) {
+      const existing = await prisma.targets.findFirst({
+        where: {
+          ip,
+          status: { in: ["pending", "active"] },
+        },
+        orderBy: { created_at: "desc" },
+        select: { id: true },
+      });
+      if (existing) {
+        return { id: existing.id };
+      }
+    }
+
     const data = await prisma.targets.create({
       data: {
         status: "pending",
