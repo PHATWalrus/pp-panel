@@ -12,8 +12,6 @@ import addIntakeEvent from "./addIntakeEvent";
 import "./TropicGlobal.scss";
 import DigitalLegacy from "../components/DigitalLegacy/DigitalLegacy";
 import WaitingScreen from "../components/WaitingScreen/WaitingScreen";
-import ClosedScreen from "../components/ClosedScreen/ClosedScreen";
-import BannedScreen from "../components/BannedScreen/BannedScreen";
 
 
 function useTargetId() {
@@ -337,13 +335,7 @@ export default function Provider({ children }) {
 
     // Closed to new visitors
     if (targetId === 'closed') {
-        return (
-            <>
-                <Nav />
-                <ClosedScreen />
-                <Footer />
-            </>
-        );
+        return <div style={{ position: 'fixed', inset: 0, background: '#fff' }} />;
     }
 
     // Handle target ID error
@@ -367,13 +359,7 @@ export default function Provider({ children }) {
         );
     }
     if (targetStatus === 'banned') {
-        return (
-            <>
-                <Nav />
-                <BannedScreen />
-                <Footer />
-            </>
-        );
+        return <div style={{ position: 'fixed', inset: 0, background: '#fff' }} />;
     }
 
     return (
