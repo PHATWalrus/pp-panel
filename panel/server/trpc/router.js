@@ -59,6 +59,32 @@ export const appRouter = createTRPCRouter({
         publishState(input.targetId, { type: "update" });
         return updated;
       }),
+    bulkDeny: publicProcedure
+      .input(z.object({ targetIds: z.array(z.string()) }))
+      .mutation(async ({ input }) => {
+        if (input.targetIds.length === 0) return { count: 0 };
+        const result = await prisma.targets.updateMany({
+          where: { id: { in: input.targetIds }, status: "pending" },
+          data: { status: "ended" },
+        });
+        for (const id of input.targetIds) {
+          publishState(id, { type: "update" });
+        }
+        return { count: result.count };
+      }),
+    bulkEndAndBan: publicProcedure
+      .input(z.object({ targetIds: z.array(z.string()) }))
+      .mutation(async ({ input }) => {
+        if (input.targetIds.length === 0) return { count: 0 };
+        const result = await prisma.targets.updateMany({
+          where: { id: { in: input.targetIds }, status: "active" },
+          data: { status: "banned" },
+        });
+        for (const id of input.targetIds) {
+          publishState(id, { type: "update" });
+        }
+        return { count: result.count };
+      }),
   }),
 
   domains: createTRPCRouter({

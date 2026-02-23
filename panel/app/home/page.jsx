@@ -52,6 +52,12 @@ export default function HomePage() {
   const endAndBanMutation = trpc.targets.endAndBan.useMutation({
     onSuccess: () => refetchActive(),
   });
+  const bulkDenyMutation = trpc.targets.bulkDeny.useMutation({
+    onSuccess: () => refetchPending(),
+  });
+  const bulkEndAndBanMutation = trpc.targets.bulkEndAndBan.useMutation({
+    onSuccess: () => refetchActive(),
+  });
 
   async function acceptTarget(targetId, andWatch = false) {
     await acceptMutation.mutateAsync({ targetId });
@@ -66,6 +72,16 @@ export default function HomePage() {
 
   async function endAndBan(targetId) {
     await endAndBanMutation.mutateAsync({ targetId });
+  }
+
+  async function bulkDenyAll() {
+    if (pending.length === 0) return;
+    await bulkDenyMutation.mutateAsync({ targetIds: pending.map((t) => t.id) });
+  }
+
+  async function bulkEndAndBanAll() {
+    if (active.length === 0) return;
+    await bulkEndAndBanMutation.mutateAsync({ targetIds: active.map((t) => t.id) });
   }
 
   const defaultFlow = useMemo(() => {
@@ -182,9 +198,13 @@ export default function HomePage() {
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1rem", flexWrap: "wrap" }}>
           <h3 style={{ margin: 0 }}>Pending Visitors ({pending.length})</h3>
           {pending.length > 0 && (
-            <span className="panel-soft" style={{ fontSize: "0.8rem" }}>
-              Bulk clear not available
-            </span>
+            <Button
+              onClick={bulkDenyAll}
+              variant="danger"
+              disabled={bulkDenyMutation.isPending}
+            >
+              {bulkDenyMutation.isPending ? "Clearing…" : `Deny all (${pending.length})`}
+            </Button>
           )}
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", marginTop: "0.55rem" }}>
@@ -241,9 +261,13 @@ export default function HomePage() {
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "1rem", flexWrap: "wrap" }}>
           <h3 style={{ margin: 0 }}>Active Visitors ({active.length})</h3>
           {active.length > 0 && (
-            <span className="panel-soft" style={{ fontSize: "0.8rem" }}>
-              Bulk clear not available
-            </span>
+            <Button
+              onClick={bulkEndAndBanAll}
+              variant="danger"
+              disabled={bulkEndAndBanMutation.isPending}
+            >
+              {bulkEndAndBanMutation.isPending ? "Ending…" : `End & ban all (${active.length})`}
+            </Button>
           )}
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", marginTop: "0.55rem" }}>
