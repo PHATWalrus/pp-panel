@@ -1,0 +1,83 @@
+$primary: rgb(43, 27, 68);
+$secondary: #72569C;
+$text: #525252;
+$lgray: rgb(247, 247, 247);
+$accent: rgb(0, 98, 110);
+
+.NewDevice {
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+        color: $primary;
+        font-weight: 400;
+        font-size: 24px;
+        margin-bottom: 12px;
+        text-align: center;
+    }
+    p{
+        margin: 0;
+        margin-bottom: 12px;
+    }
+    .deviceInfo{
+        display: flex;
+        padding: 12px 6px;
+        margin-top: 12px;
+        border: 1px solid rgb(132, 132, 132);
+        border-radius: 5px;
+        background-color: rgb(251, 251, 251);
+        .text{
+            display: flex;
+            flex-direction: column;
+            font-family: 'Helvetica', 'Arial', sans-serif;
+            justify-content: center;
+            gap: 4px;
+            >span{
+                font-weight: 500;
+                font-size: 14px;
+                color: $text;
+            }
+            >span:first-of-type{
+                font-weight: 700;
+                font-size: 16px;
+                color: black;
+                margin-bottom: 1px;
+            }
+        }
+        
+    }
+    button.yes{
+        margin-bottom: 12px;
+        background-color: rgb(2, 77, 34);
+    }
+    button.no{
+        background-color: rgb(106, 0, 12);
+        svg{
+            transform: scale(1.2)
+        }
+        margin-bottom: 16px;
+    }
+    button{
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        color: white;
+        align-items: center;
+        gap: 8px;
+        height: 50px;
+        border-radius: 5px;
+        /*&:hover{
+            filter: brightness(1.1);
+        }
+        &:active{
+            filter: brightness(0.9);
+        }*/
+
+    }
+    .doYou{
+        margin-top: 18px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: black;
+    }
+}

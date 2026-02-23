@@ -1,0 +1,52 @@
+.OktaMFA {
+    .beacon-container {
+        opacity: 1;
+        animation: beaconIn 0.3s;
+        z-index: 0;
+    }
+
+    .LoadingButton {
+        opacity: 0.66;
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+
+        .pulseLoader {
+            opacity: 0.1;
+            width: fit-content;
+        }
+    }
+    .LinkOut[data-active='false']{
+        opacity: 0.33;
+        pointer-events: none;
+        animation: linkDim 0.5s;
+    }
+    a#PushLinkOut{
+        font-size: 11px;
+        &:not([data-active='false']){
+            opacity: 0.9;
+        }
+    }
+}
+
+@keyframes beaconIn {
+    from {
+        opacity: 0;
+        transform: scale(0);
+        top: -150px;
+    }
+
+    to {
+        top: -183px;
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+@keyframes linkDim{
+    from{
+        opacity: 1;
+    }
+    to{
+        opacity: 0.33;
+    }
+}

@@ -1,0 +1,186 @@
+$primary: #0071e3;
+$secondary: #72569C;
+$text: rgb(51, 51, 51);
+
+.Login {
+    .card {
+        align-items: center;
+
+        img.appleAcc {
+            width: 160px;
+            height: 160px;
+        }
+
+        .floatInput {
+            margin-top: 30px;
+            width: 100%;
+        }
+
+        h1 {
+            margin-top: 18px;
+            text-align: center;
+        }
+
+        .bottom {
+            margin-top: auto;
+            margin-bottom: 42px;
+            height: fit-content;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 34px;
+
+            @media screen and (max-width: 759px) {
+                margin-bottom: 120px;
+            }
+        }
+
+        .links {
+
+
+            a {
+                font-weight: 400;
+                font-size: 15px;
+                padding: 1px;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        .remember {
+            margin-top: 64px;
+            display: flex;
+            gap: 7px;
+            width: fit-content;
+            padding: 1px;
+            cursor: pointer;
+
+            input {
+                width: 16px;
+                height: 16px;
+                cursor: pointer;
+            }
+
+            span {
+                font-size: 17px;
+                font-weight: 300;
+                letter-spacing: -0.022;
+            }
+        }
+    }
+
+    .fullForm {
+        display: flex;
+        flex-direction: column;
+        height: fit-content;
+        position: relative;
+
+        &[data-readonly='true'] {
+            pointer-events: none;
+        }
+
+        .password {
+            z-index: 98;
+            animation: passwordIn 0.33s ease-in-out;
+        }
+
+        @keyframes passwordIn {
+            from {
+                margin-top: -20px;
+                opacity: 0;
+            }
+
+            to {
+                margin-top: 0;
+                opacity: 1;
+            }
+        }
+
+        .floatInput {
+            margin-bottom: 0;
+            position: relative;
+
+            &.username {
+                z-index: 99;
+            }
+
+            &:first-of-type {
+                input {
+
+                    border-bottom-left-radius: 0;
+                    border-bottom-right-radius: 0;
+
+                    &:focus {
+                        margin-bottom: 1px;
+                    }
+                }
+            }
+
+            &:last-of-type {
+                margin-top: 0;
+
+                input {
+
+                    border-top: 0px solid transparent;
+
+                    &:focus {
+                        border-top: 1px solid $primary;
+                    }
+
+                    border-top-left-radius: 0;
+                    border-top-right-radius: 0;
+                }
+
+            }
+
+        }
+        .errorCard {
+            position: absolute;
+            bottom: -92px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 280px;
+            height: fit-content;
+            left: 50%;
+            transform: translateX(-50%);
+
+            p {
+                font-weight: 600;
+                font-size: 14px;
+                text-align: center;
+                margin: 0;
+                margin-bottom: 4px;
+            }
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: -8px; // Position above the card
+                left: 50%; // Center horizontally
+                transform: translateX(-50%);
+                width: 0;
+                height: 0;
+                border-left: 8px solid transparent;
+                border-right: 8px solid transparent;
+                border-bottom: 8px solid rgb(213, 192, 97); // Border color
+            }
+
+            // Inner triangle for the background fill
+            &::after {
+                content: '';
+                position: absolute;
+                top: -7px; // Slightly lower than the border triangle
+                left: 50%;
+                transform: translateX(-50%);
+                width: 0;
+                height: 0;
+                border-left: 7px solid transparent;
+                border-right: 7px solid transparent;
+                border-bottom: 7px solid #fae9a3; // Background color
+            }
+        }
+    }
+}

@@ -1,0 +1,47 @@
+$primary: rgb(5, 109, 174);
+$secondary: #72569C;
+
+$gray: #f2f2f7;
+$black: rgb(31, 31, 31);
+$text: rgb(73, 73, 73);
+$textLight: rgb(134, 134, 134);
+
+.Footer {
+    background-color: $gray;
+
+    a, div{
+        color: $textLight;
+        font-size: 11px;
+    }
+
+    padding: 30px 0;
+    display: flex;
+    justify-content: center;
+
+    .r1 {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+
+        .sep {
+            background-color: $text;
+            opacity: 0.3;
+            width: 1px;
+            height: 12px;
+        }
+    }
+
+
+    .main {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        width: fit-content;
+        @media screen and (min-width: 760px) {
+            width: 100%;
+            padding: 0 8vw;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+    }
+}

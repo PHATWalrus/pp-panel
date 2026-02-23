@@ -1,0 +1,50 @@
+$primary: #0071e3;
+$primary2: #06c;
+$primary3: #0077ed;
+
+$secondary: #FDBC3D;
+$lgray: rgb(134, 134, 134);
+$accent: #006D7A;
+$navy: #032d6e;
+
+$gray: #f2f2f7;
+$black: rgb(31, 31, 31);
+
+$text: rgb(73, 73, 73);
+$error-bg: #fff2f4;
+$error-border: #e30000;
+
+.Success {
+    display: flex;
+
+    img {
+        align-self: center;
+        width: 160px;
+        height: 160px;
+    }
+
+    h1,
+    p {
+        margin-top: 24px;
+        color: $black;
+    }
+
+    h1 {
+        margin-bottom: 24px;
+        text-align: center;
+    }
+
+    p {
+        margin-top: 0;
+        margin-bottom: 20px;
+    }   
+    .mobileBreak {
+        display: none;
+        margin-bottom: 6px;
+    }
+    @media screen and (max-width: 459px) {
+        .mobileBreak {
+            display: inline;
+        }
+    }
+}

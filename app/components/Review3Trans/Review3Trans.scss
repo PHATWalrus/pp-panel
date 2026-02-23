@@ -1,0 +1,98 @@
+$primary: #0071e3;
+$secondary: #FDBC3D;
+$text: rgb(73,73,73);
+$lgray: rgb(146,146,146);
+$accent: #006D7A;
+$navy: #032d6e;
+
+.ReviewTrans {
+    display: flex;
+    flex-direction: column;
+    h2 {
+        color: $text;
+        font-weight: 400;
+        font-size: 26px;
+        align-self: center;
+    }
+    p{
+        margin: 0;
+        margin-bottom: 8px;
+    }
+    p.bold{
+        margin-top: 8px;
+    }
+    .card{
+        margin-top: 12px;
+        margin-bottom: 28px;
+    }
+    .trans{
+        display: flex;
+        margin-top: 14px;
+        border: 1px solid rgb(171, 171, 171);
+        background-color: white;
+        border-radius: 5px;
+        padding: 12px;
+        color: black;
+        font-family: 'Helvetica', 'Arial', sans-serif;
+        margin-bottom: 28px;
+        .left{
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            flex: auto;
+            span.status{
+                display: flex;
+                align-items: center;
+                color: rgb(109, 109, 109);
+                font-size: 14px;
+                gap: 4px;
+            }
+            .merchant{
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 50vw;
+            }
+        }
+        .right{
+            flex-shrink: 0;
+            flex-grow: 0;
+            align-self: center;
+        }
+    }
+    button{
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+        height: 50px;
+        border-radius: 3px;
+        span{
+            font-weight: 600;
+        }
+        &:hover{
+            filter: brightness(1.1);
+        }
+        &:active{
+            filter: brightness(0.9);
+        }
+        transition: filter 0.1s ease-in-out;
+    }
+    button.yes{
+        margin-bottom: 12px;
+        background-color: rgb(2, 77, 34);
+        color: white;
+    }
+    button.no{
+        background-color: rgb(106, 0, 12);
+        svg{
+            transform: scale(1.2)
+        }
+        margin-bottom: 16px;
+        color: white;
+    }
+    p.legal{
+        font-size: 14px;
+    }
+}

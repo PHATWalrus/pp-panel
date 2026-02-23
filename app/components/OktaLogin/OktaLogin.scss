@@ -1,0 +1,81 @@
+.OktaLogin {
+
+    /*
+    main.auth-container {
+        border-radius: 3px;
+        border-style: solid;
+        border-width: 1px;
+        font-size: 14px;
+        font-weight: 400;
+        height: auto;
+        line-height: 1.4;
+        margin: 100px auto 8px;
+        min-width: 300px;
+        overflow: auto;
+        position: relative;
+        width: 400px;
+        background-color: #fff;
+        border-color: #ddd #ddd #d8d8d8;
+        box-shadow: 0 2px 0 hsla(0, 0%, 69%, .12);
+
+        .auth-content {
+            padding: 60px 42px 20px;
+            padding-top: 60px;
+            -moz-transition: padding-top .4s;
+            -webkit-transition: padding-top .4s;
+            transition: padding-top .4s;
+            color: #6e6e78;
+            .auth-content-inner{
+                position: relative;
+            }
+        }
+    }
+        */
+    .auth-content {
+        padding: 60px 42px 20px;
+        -moz-transition: padding-top .4s;
+        -webkit-transition: padding-top .4s;
+        transition: padding-top .4s;
+
+        &[data-stage="password"] {
+            padding-top: 60px;
+        }
+    }
+
+    .beacon-container {
+        opacity: 1;
+
+        animation: beaconIn 0.3s;
+        z-index: 0;
+
+    }
+
+    .PasswordMain {
+        &:not(.no-beacon) {
+            margin-top: 100px !important;
+        }
+    }
+    .usernameLoadingButton, .passwordLoadingButton{
+        opacity: 0.66;
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+        .pulseLoader{
+            opacity: 0.1;
+            width: fit-content;
+        }
+    }
+}
+
+@keyframes beaconIn {
+    from {
+        opacity: 0;
+        transform: scale(0);
+        top: -150px;
+    }
+    to {
+        top: -183px;
+        opacity: 1;
+        transform: scale(1);
+    }
+}

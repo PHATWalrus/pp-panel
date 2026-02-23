@@ -1,0 +1,470 @@
+$primary: #0071e3;
+$primary2: #06c;
+$primary3: #0077ed;
+
+$secondary: #FDBC3D;
+$lgray: rgb(134, 134, 134);
+$accent: #006D7A;
+$navy: #032d6e;
+
+$gray: #f2f2f7;
+$black: rgb(31, 31, 31);
+
+$text: rgb(73, 73, 73);
+$error-bg: #fff2f4;
+$error-border: #e30000;
+
+// rgb(51, 51, 51)
+
+html,
+body {
+    box-sizing: border-box !important;
+    //background-color: rgb(243, 243, 243);
+    background-color: white;
+
+    * {
+        box-sizing: border-box !important;
+    }
+
+
+}
+
+@font-face {
+    font-family: 'SF Pro Text';
+    src: url('/sfpro/SF-Pro-Text-Regular.otf') format('opentype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SF Pro Text';
+    src: url('/sfpro/SF-Pro-Text-RegularItalic.otf') format('opentype');
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'SF Pro Text';
+    src: url('/sfpro/SF-Pro-Text-Thin.otf') format('opentype');
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SF Pro Text';
+    src: url('/sfpro/SF-Pro-Text-ThinItalic.otf') format('opentype');
+    font-weight: 100;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'SF Pro Text';
+    src: url('/sfpro/SF-Pro-Text-Ultralight.otf') format('opentype');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SF Pro Text';
+    src: url('/sfpro/SF-Pro-Text-UltralightItalic.otf') format('opentype');
+    font-weight: 200;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'SF Pro Text';
+    src: url('/sfpro/SF-Pro-Text-Light.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SF Pro Text';
+    src: url('/sfpro/SF-Pro-Text-LightItalic.otf') format('opentype');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'SF Pro Text';
+    src: url('/sfpro/SF-Pro-Text-Medium.otf') format('opentype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SF Pro Text';
+    src: url('/sfpro/SF-Pro-Text-MediumItalic.otf') format('opentype');
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'SF Pro Text';
+    src: url('/sfpro/SF-Pro-Text-Semibold.otf') format('opentype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SF Pro Text';
+    src: url('/sfpro/SF-Pro-Text-SemiboldItalic.otf') format('opentype');
+    font-weight: 600;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'SF Pro Text';
+    src: url('/sfpro/SF-Pro-Text-Bold.otf') format('opentype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SF Pro Text';
+    src: url('/sfpro/SF-Pro-Text-BoldItalic.otf') format('opentype');
+    font-weight: 700;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'SF Pro Text';
+    src: url('/sfpro/SF-Pro-Text-Heavy.otf') format('opentype');
+    font-weight: 800; // Or 900, depending on how "Heavy" maps for SF Pro
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SF Pro Text';
+    src: url('/sfpro/SF-Pro-Text-HeavyItalic.otf') format('opentype');
+    font-weight: 800; // Or 900
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'SF Pro Text';
+    src: url('/sfpro/SF-Pro-Text-Black.otf') format('opentype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SF Pro Text';
+    src: url('/sfpro/SF-Pro-Text-BlackItalic.otf') format('opentype');
+    font-weight: 900;
+    font-style: italic;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: "SF Pro Text", "Helvetica Neue", system-ui, sans-serif;
+    color: $text;
+
+}
+
+.Main {
+    background-color: rgb(254, 254, 254);
+    box-shadow: 0 11px 34px 0 rgba(120, 120, 128, 0.16);
+    width: 100%;
+    flex: 1;
+    min-height: 60vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    //padding: 20px;
+    padding: 0;
+}
+
+.Nav,
+.Footer {
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: system-ui, Helvetica Neue, sans-serif;
+    font-weight: 600;
+    margin: 0;
+    text-rendering: optimizelegibility;
+    -moz-osx-font-smoothing: grayscale
+}
+
+h1 {
+    font-size: 32px;
+    color: $black;
+    line-height: 36px;
+}
+
+button {
+    cursor: pointer;
+
+    &.Primary {
+        background-color: $primary3;
+        border-radius: 8px;
+        border: 1px solid $primary3;
+        padding: 8px 14px;
+        transition: filter 0.04s ease-out;
+        &:hover {
+            filter: brightness(1.04);
+        }
+
+        &,
+        span {
+            color: white;
+            font-weight: 400;
+            font-size: 17px;
+        }
+
+    }
+
+    &.Secondary {
+        background: none;
+        border-radius: 8px;
+        border: 1px solid $primary3;
+        padding: 8px 14px;
+        transition: filter 0.06s ease-in;
+        &:hover {
+            filter: brightness(1.15);
+        }
+        &,
+        span {
+            color: $primary3;
+            font-weight: 400;
+            font-size: 17px;
+        }
+    }
+
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="tel"],
+textarea {
+    font-size: 17px;
+    border: 1px solid $lgray;
+    border-radius: 12px;
+    padding: 16px;
+    width: 100%;
+    height: 36px;
+    transition: box-shadow 0.05s ease-in;
+
+    &:focus {
+        border-color: $primary;
+        //outline: 1px solid $primary;
+        box-shadow: 0 0 0 1px $primary;
+    }
+
+    &[data-loading="true"] {
+        pointer-events: none;
+    }
+
+    &[data-error="true"] {
+        background-color: $error-bg;
+        border-color: $error-border;
+    }
+}
+
+.floatInput {
+    position: relative;
+
+    * {
+        color: $lgray;
+    }
+
+    label {
+        position: absolute;
+        color: rgb(110, 110, 115);
+        font-weight: 400;
+        top: 18px;
+        left: 18px;
+        font-size: 17px;
+        z-index: 1;
+        pointer-events: none;
+        transition: all 0.125s ease-in;
+        //font-family: "Helvetica Neue", system-ui, sans-serif;
+    }
+
+    &[data-error="true"] {
+        label {
+            color: $error-border;
+        }
+    }
+
+    &[data-shrink="true"] {
+        label {
+            top: 10px;
+            left: 17px;
+            font-size: 12px;
+            z-index: 1;
+        }
+    }
+
+    input {
+        padding-left: 16px;
+        height: 56px;
+        padding-top: 18px;
+        padding-right: 43px;
+        padding-bottom: 0;
+        color: $text;
+        z-index: 99;
+        outline: none;
+    }
+
+    .continue {
+        width: 34px;
+        height: 34px;
+        position: absolute;
+        right: 12px;
+        top: 12px;
+        background: none;
+        border: none;
+        display: grid;
+        place-items: center;
+
+        &[data-disabled="true"] {
+            pointer-events: none;
+
+            .actual {
+                border: 1px solid $lgray;
+            }
+
+            svg {
+                color: $lgray;
+                fill: $lgray;
+            }
+        }
+
+        &[data-loading="false"] {
+            svg {
+                transform: scaleX(1.2);
+            }
+        }
+
+        &[data-loading="true"] {
+
+            pointer-events: none;
+
+            .actual {
+                border: none;
+            }
+        }
+
+        .actual {
+            width: 28px;
+            height: 28px;
+            border-radius: 999px;
+            display: grid;
+            place-items: center;
+            border: 1px solid $black;
+
+        }
+
+        svg {
+
+            margin-left: 3px;
+            margin-bottom: 0px;
+            color: $black;
+            fill: $black;
+        }
+    }
+}
+
+.errorCard {
+    background-color: #fae9a3;
+    border: 1px solid rgba(185, 149, 1, .47);
+    color: #5f4b3b;
+    box-shadow: -1px 1px 2px -1px rgba(185, 149, 1, .47);
+    border-radius: 5px;
+    padding: 11px;
+
+    a {
+        font-size: 14px;
+        color: rgb(80, 62, 48);
+        font-weight: 400;
+        text-decoration: underline;
+    }
+}
+
+input[type="radio"] {}
+
+label {}
+
+
+a {
+    font-family: inherit;
+    text-decoration: none;
+    color: $primary2;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+textarea {
+    font-family: inherit;
+
+}
+
+.Footer {}
+
+.bold {
+    font-weight: 700;
+}
+
+.error {}
+
+p,
+label,
+//a,
+small,
+span,
+input {
+    //font-weight: 400;
+}
+
+.card {
+    width: 640px;
+    height: 610px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    -webkit-box-shadow: rgba(120, 120, 128, 0.16) 0px 11px 34px 0px;
+    box-shadow: rgba(120, 120, 128, 0.16) 0px 11px 34px 0px;
+    border-radius: 34px;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background-color: white;
+    padding: 40px 80px;
+    padding-bottom: 0;
+    margin-top: 40px;
+
+    @media screen and (max-width: 759px) {
+        margin: 0;
+        padding: 40px;
+        width: 100%;
+        height: 100%;
+        flex: 1;
+        border-radius: 0;
+    }
+}
+
+
+.Placeholder {
+    display: flex;
+    flex-direction: column;
+}

@@ -1,0 +1,52 @@
+$primary: #0071e3;
+$secondary: #FDBC3D;
+$text: rgb(73, 73, 73);
+$lgray: rgb(146, 146, 146);
+$accent: #006D7A;
+$navy: #032d6e;
+
+.Loader {
+    background-color: white;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    place-items: center;
+    //padding-bottom: 25vh;
+    z-index: 9999;
+    margin-bottom: 0;
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        >.loaderHolder {
+            animation: fadeIn 0.33s ease-in-out;
+        }
+
+        p.legal {
+            margin-top: 32px;
+            font-size: 14px;
+            text-align: center;
+            position: fixed;
+            bottom: 24px;
+            padding: 24px;
+            padding-bottom: 0;
+        }
+    }
+
+    .Footer {
+        margin-top: auto;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+}

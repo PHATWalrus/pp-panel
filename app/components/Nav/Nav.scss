@@ -1,0 +1,14 @@
+$primary: rgb(43, 27, 68);
+$secondary: #72569C;
+$navy: #032d6e;
+
+.Nav {
+    height: 44px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    //background: none;
+    border-bottom: white;
+    background-color: rgb(251, 251, 252);
+    z-index: 9999;
+}
