@@ -5,7 +5,6 @@
   "packageManager": "bun@1.2.0",
   "scripts": {
     "sync:schema": "cp ../../prisma/schema.prisma ./prisma/schema.prisma",
-    "postinstall": "bun run prisma:generate",
     "prisma:generate": "bunx prisma generate --schema=./prisma/schema.prisma",
     "dev": "bun run prisma:generate && bunx next dev -p 3001",
     "build": "bun run prisma:generate && bunx next build",
