@@ -9,7 +9,7 @@ nixPkgs = ["nodejs_22", "bun"]
 cmds = ["bun install"]
 
 [phases.build]
-cmds = ["bunx prisma generate", "bun run build"]
+cmds = ["bun run build"]
 
 [start]
 cmd = "bun run start"
