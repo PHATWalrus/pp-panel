@@ -126,10 +126,13 @@ export default function Provider({ children }) {
                         setupStatusPolling(targetId);
                         return;
                     }
-                    if (status === 'banned' || status === 'ended') {
+                    if (status === 'banned') {
                         setTargetStatus('banned');
                         setLoading(false);
                         return;
+                    }
+                    if (status === 'ended') {
+                        setTargetStatus('ended');
                     }
                 }
                 const [initialIntakeState, initialGameplan, initialEvents] = await Promise.all([
@@ -362,11 +365,12 @@ export default function Provider({ children }) {
         return <div style={{ position: 'fixed', inset: 0, background: '#fff' }} />;
     }
 
+    if (loading) {
+        return <Loader />;
+    }
+
     return (
         <>
-        {
-            loading && <Loader />
-        }
         {/*}
         {
             currentPage == 'Okta Login' && <UserPassLogin setParentUsername={setUsername} />

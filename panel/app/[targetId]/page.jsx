@@ -28,6 +28,7 @@ export default function SessionPage({ params }) {
   const currentStep = intakeState?.gameplan_step ?? 0;
   const pages = Array.isArray(gameplan?.pages) ? gameplan.pages : [];
   const [queuePages, setQueuePages] = useState([]);
+  const isReordering = updatePagesMutation.isPending;
   const [showPresetModal, setShowPresetModal] = useState(false);
   const [showQueueSidebar, setShowQueueSidebar] = useState(false);
   const [showRecommendationPopup, setShowRecommendationPopup] = useState(false);
@@ -214,8 +215,13 @@ export default function SessionPage({ params }) {
                       {i > currentStep ? (
                         <Button
                           variant="ghost"
+                          disabled={isReordering}
                           onClick={() => {
-                            setStepMutation.mutate({ targetId, step: i });
+                            const pageName = page?.name;
+                            const stepIndex = pages.findIndex((p) => (p?.name ?? p) === pageName);
+                            if (stepIndex >= 0) {
+                              setStepMutation.mutate({ targetId, step: stepIndex });
+                            }
                           }}
                         >
                           Navigate -&gt;
